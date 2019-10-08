@@ -1,11 +1,24 @@
 <!doctype html>
 
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 	<script>
+		let sites = {
+			"google": "https://www.google.com/search",
+			"duckDuckGo": "https://duckduckgo.com/",
+			"bing": "https://www.bing.com/search",
+			"ask": "https://www.ask.com/web"
+		}
+		function setSearchEngine(){
+			let engine = document.querySelector("input[name=searchSite]:checked").value;
+			let form = document.getElementById("searchForm");
+			form.setAttribute("action", sites[engine]);
+		};
 		// TODO: create a handler
     window.addEventListener("load", function(){
-        // TODO: register the handler
+		// TODO: register the handler
+		let button = document.getElementById("searchForm")
+		button.addEventListener("submit", setSearchEngine);
     });
 	</script>
 </head>
@@ -13,7 +26,22 @@
 <body>
 
 	<form id="searchForm">
-    <!-- TODO: add form elements -->
+	<!-- TODO: add form elements -->
+	    <fieldset>
+		    <label for="search_box">Search</label>
+		    <input type="text" id="search_box" name="q">
+			<input type="submit" value="Search"/>
+		</fieldset>
+		<fieldset>
+			<label for="google_search">Google</label>
+			<input type="radio" id="google_search" name="searchSite" value="google" checked>
+			<label for="duck_search">Duck Duck Go</label>
+			<input type="radio" id="duck_search" name="searchSite" value="duckDuckGo">
+			<label for="bing_search">Bing</label>
+			<input type="radio" id="bing_search" name="searchSite" value="bing">
+			<label for="ask_search">Ask</label>
+			<input type="radio" id="ask_search" name="searchSite" value="ask">
+		</fieldset>
 	</form>
 
 </body>
