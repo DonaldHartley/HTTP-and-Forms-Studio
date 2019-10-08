@@ -10,21 +10,25 @@
 			"ask": "https://www.ask.com/web"
 		}
 		function setSearchEngine(){
+			if (document.getElementById("search_box").value===""){
+			    alert("You must enter a seach term.");
+				event.preventDefault();
+			} else {
 			let engine = document.querySelector("input[name=searchSite]:checked").value;
 			let form = document.getElementById("searchForm");
 			form.setAttribute("action", sites[engine]);
+			}
 		};
 		// TODO: create a handler
-    window.addEventListener("load", function(){
-		// TODO: register the handler
-		let button = document.getElementById("searchForm")
-		button.addEventListener("submit", setSearchEngine);
-    });
+    	window.addEventListener("load", function(){
+			// TODO: register the handler
+        	let button = document.getElementById("searchForm")
+			button.addEventListener("submit", setSearchEngine);
+    	});
 	</script>
 </head>
 
 <body>
-
 	<form id="searchForm">
 	<!-- TODO: add form elements -->
 	    <fieldset>
@@ -43,5 +47,4 @@
 			<input type="radio" id="ask_search" name="searchSite" value="ask">
 		</fieldset>
 	</form>
-
 </body>
